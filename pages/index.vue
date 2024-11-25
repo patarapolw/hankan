@@ -1,6 +1,11 @@
 <template>
   <div>
-    <h1>Welcome to the homepage</h1>
-    <AppAlert> This is an auto-imported component </AppAlert>
+    <h1>Welcome to the Home</h1>
   </div>
 </template>
+
+<script setup lang="ts">
+navigateTo("/dashboard");
+</script>
+
+<style scoped></style>

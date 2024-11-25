@@ -17,10 +17,11 @@
     "editor.defaultFormatter": "vscode.html-language-features",
     "editor.formatOnSave": true
   },
-  "[vue]": {
-    "editor.semanticHighlighting.enabled": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
-  },
+  // "[vue]": {
+  //   "editor.semanticHighlighting.enabled": true,
+  //   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  //   "editor.formatOnSave": true
+  // },
   "importSorter.generalConfiguration.sortOnBeforeSave": true,
+  "vue3snippets.enable-compile-vue-file-on-did-save-code": true,
 }
