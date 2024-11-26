@@ -3,7 +3,7 @@
     <v-layout>
       <v-navigation-drawer expand-on-hover rail :mobile="false">
         <v-list>
-          <v-list-item title="Home">
+          <v-list-item title="Home" to="/">
             <template v-slot:prepend>
               <v-avatar color="info">
                 <v-icon icon="mdi-home" size="x-small"></v-icon>

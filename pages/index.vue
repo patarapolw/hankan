@@ -11,24 +11,26 @@
         </span>
       </v-btn>
     </v-sheet>
-    <v-sheet class="d-flex-text justify-center mt-3">
+    <v-sheet class="d-flex-text justify-center mt-4">
       <span class="item" lang="zh-CN">汉字:</span>
       <span class="item">{{ nHan }}</span>
-      <span class="item">{{ "," }}</span>
+      <span>,</span>
       <span class="item" lang="zh-CN">生词:</span>
       <span class="item">{{ nVoc }} </span>
       <span class="item">{{ `(${Math.round(percentCorrect * 100)}%)` }}</span>
     </v-sheet>
-    <v-sheet>
+    <v-sheet class="ma-4">
       <v-menu v-for="(c, i) in allHan" :key="i">
         <template v-slot:activator="{ props }">
-          <v-avatar v-bind="props" color="info">
-            {{ c }}
-          </v-avatar>
+          <v-btn icon v-bind="props">
+            <v-avatar color="info" size="large" lang="zh-CN">
+              {{ c }}
+            </v-avatar>
+          </v-btn>
         </template>
         <v-list>
           <v-list-item>
-            <span class="text-h1">
+            <span class="text-h1" lang="zh-CN" style="font-family: serif">
               {{ c }}
             </span>
           </v-list-item>
@@ -48,7 +50,7 @@ const nHan = ref(402);
 const nVoc = ref(1166);
 const percentCorrect = ref(0.48);
 
-const allHan = ref("アイウエアブランド");
+const allHan = ref("汉字火曜日");
 </script>
 
 <style lang="scss" scoped>
@@ -58,7 +60,7 @@ const allHan = ref("アイウエアブランド");
   align-items: end;
 }
 
-.item + .item {
+.item:not(:first-child) {
   margin-left: 0.3em;
 }
 </style>
