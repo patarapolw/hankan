@@ -1,11 +1,9 @@
 <template>
   <div>
-    <h1>Welcome to the Home</h1>
+    <h1>Dashboard</h1>
   </div>
 </template>
 
-<script setup lang="ts">
-navigateTo("/dashboard");
-</script>
+<script setup lang="ts"></script>
 
 <style scoped></style>
