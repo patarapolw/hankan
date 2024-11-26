@@ -14,10 +14,11 @@
     "@mdi/font": "^7.4.47",
     "nuxt": "^3.14.1592",
     "vue": "latest",
-    "vue-router": "latest"
+    "vue-router": "^4.5.0"
   },
   "packageManager": "pnpm@9.7.0",
   "devDependencies": {
+    "sass": "^1.81.0",
     "vite-plugin-vuetify": "^2.0.4",
     "vuetify": "^3.7.4"
   }
