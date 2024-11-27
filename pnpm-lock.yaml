@@ -20,6 +20,9 @@ importers:
       nuxt:
         specifier: ^3.14.1592
         version: 3.14.1592(@parcel/watcher@2.5.0)(@types/node@22.9.3)(ioredis@5.4.1)(magicast@0.3.5)(rollup@4.27.4)(sass-embedded@1.81.0)(sass@1.81.0)(terser@5.36.0)(typescript@5.7.2)(vite@5.4.11(@types/node@22.9.3)(sass-embedded@1.81.0)(sass@1.81.0)(terser@5.36.0))
+      ts-fsrs:
+        specifier: ^4.4.3
+        version: 4.4.3
       vue:
         specifier: latest
         version: 3.5.13(typescript@5.7.2)
@@ -2932,6 +2935,10 @@ packages:
 
   tr46@0.0.3:
     resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
+
+  ts-fsrs@4.4.3:
+    resolution: {integrity: sha512-QOmzfsOkYfkHxCI0MOyKhSZ/XME1vbDuKo4c3Km2JGFF3K/K67RpTQvRJdDNwEUq4wa9wTrD3GSC+OPNtvAn0A==}
+    engines: {node: '>=18.0.0'}
 
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
@@ -6461,6 +6468,8 @@ snapshots:
   totalist@3.0.1: {}
 
   tr46@0.0.3: {}
+
+  ts-fsrs@4.4.3: {}
 
   tslib@2.8.1:
     optional: true
