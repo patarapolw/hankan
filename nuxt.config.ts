@@ -33,10 +33,9 @@ export default defineNuxtConfig({
   devServer: {
     port: 33126,
   },
-  ssr: false,
-  router: {
-    options: {
-      hashMode: true,
+  nitro: {
+    experimental: {
+      openAPI: true,
     },
   },
 });
