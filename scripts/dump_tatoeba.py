@@ -108,7 +108,7 @@ def dump_tatoeba(lang: str):
                     if re_han.fullmatch(v):
                         if v not in voc:
                             voc.add(v)
-                            f += zipf_frequency(v, "zh" if lang == "cmn" else "ja")
+                            f += zipf_frequency(v, "zh")
 
             db.execute(
                 """

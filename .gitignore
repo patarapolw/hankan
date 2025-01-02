@@ -197,3 +197,4 @@ cython_debug/
 
 tmp/
 /public/*.db*
+!tatoeba_cmn.db
