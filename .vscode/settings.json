@@ -22,6 +22,12 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true
   },
+  "[python]": {
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.formatOnType": true,
+    "editor.wordBasedSuggestions": "off",
+    "editor.formatOnSave": true
+  },
   "importSorter.generalConfiguration.sortOnBeforeSave": false,
   "vue3snippets.enable-compile-vue-file-on-did-save-code": false,
 }

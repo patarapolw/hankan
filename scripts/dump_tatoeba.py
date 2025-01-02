@@ -9,7 +9,7 @@ import bz2
 import json
 from pathlib import Path
 
-tmp_root = Path('tmp')
+tmp_root = Path("tmp")
 tmp_root.mkdir(exist_ok=True)
 
 
@@ -27,20 +27,22 @@ def dump_tatoeba(lang: str):
         );
 
         CREATE INDEX IF NOT EXISTS idx_tatoeba_f ON tatoeba (f);
+
+        DELETE FROM tatoeba;
         """
     )
 
-    if not db.execute("SELECT 1 FROM tatoeba LIMIT 1").fetchall():
+    if True:
         _download_tatoeba(lang)
         _download_tatoeba("eng")
 
         _download_tatoeba_links()
 
-        print("Building sentence dictionary...")
+        print(f"Building {lang} sentence dictionary...")
 
         db.executescript(
             f"""
-            CREATE UNIQUE INDEX idx_u_{lang} ON tatoeba (txt);
+            CREATE UNIQUE INDEX IF NOT EXISTS idx_u_{lang} ON tatoeba (txt);
 
             CREATE TEMP TABLE eng (
                 id      INT NOT NULL PRIMARY KEY,
@@ -95,14 +97,18 @@ def dump_tatoeba(lang: str):
             if re_en.search(sentence):
                 continue
 
-            f = 0
+            f = None
             voc = set()
-            vs = jieba.cut_for_search(sentence)
-            for v in vs:
-                if re_han.fullmatch(v):
-                    if v not in voc:
-                        voc.add(v)
-                        f += zipf_frequency(v, lang)
+
+            if lang == "cmn":
+                f = 0
+                voc = set()
+
+                for v in set(jieba.cut_for_search(sentence)):
+                    if re_han.fullmatch(v):
+                        if v not in voc:
+                            voc.add(v)
+                            f += zipf_frequency(v, "zh" if lang == "cmn" else "ja")
 
             db.execute(
                 """
@@ -117,7 +123,7 @@ def dump_tatoeba(lang: str):
                     id1,
                     sentence,
                     id1,
-                    json.dumps(list(voc), ensure_ascii=False),
+                    json.dumps(list(voc), ensure_ascii=False) if voc else None,
                     f,
                 ),
             )
@@ -163,8 +169,9 @@ def _download_tatoeba_links():
         urlretrieve(url, zipPath)
 
         with tarfile.open(zipPath) as z:
-            z.extract(filename, tmp_root)
+            z.extract(filename, tmp_root, filter="data")
 
 
 if __name__ == "__main__":
-    dump_tatoeba('cmn')
+    dump_tatoeba("cmn")
+    # dump_tatoeba('jpn')

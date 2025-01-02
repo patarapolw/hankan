@@ -1,38 +1,41 @@
 from wordfreq import zipf_frequency
 from regex import Regex
 
-import sqlite3
+import json
 
 
 def dump_wordfreq_zh():
-    db = sqlite3.connect("public/cedict.db")
     re_han = Regex(r"^\p{Han}+$")
+    f_dict = {}
 
-    db.executescript(
-        f"""
-        CREATE TABLE IF NOT EXISTS wordfreq (
-            v   TEXT NOT NULL PRIMARY KEY,
-            f   FLOAT NOT NULL
-        );
-
-        CREATE INDEX IF NOT EXISTS idx_wordfreq_f ON wordfreq (f);
-        """
-    )
-
-
-    for r in db.execute("SELECT DISTINCT v FROM (SELECT simp v FROM cedict UNION SELECT trad v FROM cedict)"):
-        v = r[0]
-        if not v or not re_han.fullmatch(v):
+    for v in _load_vocab():
+        if not re_han.fullmatch(v):
             continue
 
-        db.execute(
-            "INSERT INTO wordfreq (v, f) VALUES (?,?) ON CONFLICT DO NOTHING",
-            (v, zipf_frequency(v, "zh")),
-        )
+        if v in f_dict:
+            continue
 
-    db.commit()
+        f = zipf_frequency(v, "zh")
+        f_dict[v] = f
 
-    print("Done")
+    for k, _ in set(filter(lambda kv: kv[1] == 0, f_dict.items())):
+        del f_dict[k]
+
+    with open("public/wordfreq_zh.json", "w", encoding="utf8") as f:
+        json.dump(f_dict, f, ensure_ascii=False, indent=0)
+
+
+def _load_vocab():
+    for ln in open("tmp/cedict_ts.u8", "r", encoding="utf8"):
+        if ln[0] == "#":
+            continue
+
+        trad, simp, _ = ln.split(" ", 2)
+
+        yield simp
+
+        if trad != simp:
+            yield trad
 
 
 if __name__ == "__main__":

@@ -1,15 +1,14 @@
 //@ts-check
 
 import { BlobReader, ZipReader, TextWriter } from "@zip.js/zip.js";
-import { ofetch } from "ofetch";
 
-export async function downloadCedict() {
-  const data = await ofetch(
-    "https://www.mdbg.net/chinese/export/cedict/cedict_1_0_ts_utf-8_mdbg.zip",
-    { responseType: "blob" },
-  );
-
-  const bReader = new BlobReader(data);
+/**
+ *
+ * @param {File} f
+ * @returns
+ */
+export async function downloadCedict(f) {
+  const bReader = new BlobReader(f);
   const reader = new ZipReader(bReader);
   const writer = new TextWriter();
 
