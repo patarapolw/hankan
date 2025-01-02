@@ -7,7 +7,7 @@ import { BlobReader, ZipReader, TextWriter } from "@zip.js/zip.js";
  * @param {File} f
  * @returns
  */
-export async function downloadCedict(f) {
+export async function extractCedict(f) {
   const bReader = new BlobReader(f);
   const reader = new ZipReader(bReader);
   const writer = new TextWriter();
