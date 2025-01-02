@@ -1,0 +1,14 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+wordfreq = {extras = ["cjk"], version = "*"}
+jieba = "*"
+regex = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.12"
