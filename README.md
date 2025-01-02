@@ -1,8 +1,8 @@
 # 汉漢 (Han-Kan)
 
-Strict reading-first quiz with adequate reps and SRS
+Strict CJ reading-first quiz with adequate reps and SRS
 
-Web application version of `https://github.com/patarapolw/cnpy` with experimental Japanese support.
+Web application version of [cnpy](https://github.com/patarapolw/cnpy) with experimental Japanese support.
 
 # Development
 
