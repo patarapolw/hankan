@@ -7,6 +7,7 @@ name = "pypi"
 wordfreq = {extras = ["cjk"], version = "*"}
 jieba = "*"
 regex = "*"
+pywebview = "*"
 
 [dev-packages]
 
